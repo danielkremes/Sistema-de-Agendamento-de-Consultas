@@ -28,4 +28,4 @@ O objetivo é oferecer uma aplicação funcional que permita:
 
 ## 📅 Última Atualização
 
-- **11/08/2025**
+- **13/08/2025**
