@@ -1,6 +1,7 @@
 package drk.hospital.sistema_de_agendamento_de_consultas.services;
 
 import drk.hospital.sistema_de_agendamento_de_consultas.entities.Medico;
+import drk.hospital.sistema_de_agendamento_de_consultas.entities.Paciente;
 import drk.hospital.sistema_de_agendamento_de_consultas.repository.MedicoRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -15,21 +16,20 @@ public class MedicoService {
     private final MedicoRepository medicoRepository;
 
     // POST
-    public Medico cadastrarMedico(Medico medico) {
+    public Medico cadastrarPaciente(Medico medico) {
         return medicoRepository.save(medico);
     }
 
     // GET
-    public List<Medico> listarPacientes() {
+    public List<Medico> listarMedicos() {
         return medicoRepository.findAll();
     }
 
     // PUT
-    public Medico atualizarPaciente(Long id, Medico medico) {
+    public Medico atualizarMedico(Long id, Medico medico) {
         Medico medicoExiste = medicoRepository.findById(id).orElseThrow(
-                () -> new EntityNotFoundException("Paciente não encontrado")
+                () -> new EntityNotFoundException("Medico não encontrado")
         );
-
         medicoExiste.setNome(medico.getNome());
         medicoExiste.setCrm(medico.getCrm());
         medicoExiste.setEspecialidadeMedico(medico.getEspecialidadeMedico());
@@ -38,10 +38,10 @@ public class MedicoService {
     }
 
     // DELETE
-    public void deletarPaciente(Long id) {
+    public void deletarMedico(Long id) {
 
         if (!medicoRepository.existsById(id)) {
-            throw new EntityNotFoundException("Medico não encontrado");
+            throw new EntityNotFoundException("Paciente não encontrado");
         }
         medicoRepository.deleteById(id);
     }

@@ -1,5 +1,6 @@
 package drk.hospital.sistema_de_agendamento_de_consultas.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -15,7 +16,6 @@ import lombok.Setter;
 public class ContatoPaciente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(nullable = false)
     private Long id;
 
     @Column(name = "telefone_paciente", length = 11, nullable = false, unique = true)
@@ -28,6 +28,7 @@ public class ContatoPaciente {
     private String whatsAppPaciente;
 
     @ManyToOne
-    @JoinColumn(name = "id_contato_paciente", referencedColumnName = "id")
+    @JoinColumn(name = "paciente_id", referencedColumnName = "id")
+    @JsonBackReference
     private Paciente paciente;
 }
